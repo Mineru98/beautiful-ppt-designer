@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "styles": [
+    {
+      "id": "minimal-clean",
+      "name": "미니멀 클린 / Minimal Clean",
+      "description": "Clean, spacious layouts with generous whitespace that lets each element breathe. Typography is the hero—thin weights, precise spacing, and subtle geometric accents do the heavy lifting. The result feels calm, considered, and quietly professional.",
+      "keywords": ["minimal", "whitespace", "typography", "clean", "simple", "geometric", "professional"],
+      "mood": "Calm professionalism"
+    },
+    {
+      "id": "corporate-modern",
+      "name": "코퍼레이트 모던 / Corporate Modern",
+      "description": "Structured grid layouts anchor bold accent colors that signal authority without shouting. Professional header bands frame the content, and clean data visualization areas make numbers feel trustworthy. Balanced composition projects confidence and reliability.",
+      "keywords": ["corporate", "grid", "structured", "bold", "data", "professional", "authority"],
+      "mood": "Balanced and authoritative"
+    },
+    {
+      "id": "gradient-flow",
+      "name": "그라디언트 플로우 / Gradient Flow",
+      "description": "Smooth multi-stop color transitions ripple across the background like liquid light, punctuated by flowing organic shapes. Frosted glass card overlays sit above the vibrant gradients, creating depth and dimensionality. The overall feel is energetic, modern, and unmistakably contemporary.",
+      "keywords": ["gradient", "fluid", "glass", "dynamic", "vivid", "organic", "depth"],
+      "mood": "Energetic and contemporary"
+    },
+    {
+      "id": "dark-elegant",
+      "name": "다크 엘레건트 / Dark Elegant",
+      "description": "Deep dark backgrounds act as a stage for luminous accent colors that seem to glow from within. High-contrast typography commands attention, while subtle glow halos and fine metallic lines add tactile richness. Every slide feels like a premium product reveal.",
+      "keywords": ["dark", "luxury", "glow", "contrast", "premium", "metallic", "sophisticated"],
+      "mood": "Sophisticated and premium"
+    },
+    {
+      "id": "nature-organic",
+      "name": "네이처 오가닉 / Nature Organic",
+      "description": "Earth-toned palettes of sage, terracotta, and warm cream evoke sun-drenched landscapes and natural materials. Soft rounded shapes and botanical-inspired line decorations weave through the layout like vines. Warm and approachable, it invites the audience to lean in.",
+      "keywords": ["earth", "botanical", "organic", "warm", "natural", "textured", "rounded"],
+      "mood": "Warm and approachable"
+    },
+    {
+      "id": "tech-neon",
+      "name": "테크 네온 / Tech Neon",
+      "description": "A near-black base serves as the canvas for electric neon accent lines and glowing highlight nodes. Circuit-board–inspired geometric patterns trace paths across backgrounds, giving a sense of live data flowing through the slide. The aesthetic is futuristic, precise, and unmistakably innovative.",
+      "keywords": ["neon", "tech", "dark", "circuit", "futuristic", "electric", "geometric"],
+      "mood": "Futuristic and innovative"
+    },
+    {
+      "id": "pastel-soft",
+      "name": "파스텔 소프트 / Pastel Soft",
+      "description": "Carefully balanced pastel combinations—lavender, peach, mint, and sky—fill the space with gentle energy. Rounded corners on every card and button soften the edges, while delicate drop shadows lift elements off the page. Playful without being childish, it feels friendly and inviting.",
+      "keywords": ["pastel", "soft", "rounded", "playful", "gentle", "friendly", "light"],
+      "mood": "Friendly and inviting"
+    },
+    {
+      "id": "bold-geometric",
+      "name": "볼드 지오메트릭 / Bold Geometric",
+      "description": "Large, assertive geometric shapes—triangles, trapezoids, overlapping circles—march across the slide with Bauhaus conviction. Vivid primary colors clash and harmonize in equal measure, while dynamic diagonal angles inject kinetic energy. Presentations built this way are impossible to ignore.",
+      "keywords": ["bauhaus", "geometric", "bold", "primary", "dynamic", "angular", "striking"],
+      "mood": "Striking and memorable"
+    },
+    {
+      "id": "classic-academic",
+      "name": "클래식 아카데믹 / Classic Academic",
+      "description": "Traditional serif typefaces set the scholarly tone, backed by structured column layouts that recall printed journals and bound monographs. A muted palette of ivory, charcoal, and deep burgundy conveys gravitas, while restrained gold accents nod to institutional prestige. Authoritative and timelessly elegant.",
+      "keywords": ["serif", "academic", "scholarly", "traditional", "gold", "muted", "structured"],
+      "mood": "Authoritative and timeless"
+    },
+    {
+      "id": "scandinavian-hygge",
+      "name": "스칸디나비안 휘게 / Scandinavian Hygge",
+      "description": "Warm oat, birch, and flax tones create a cozy envelope that feels like a well-lit cabin in winter. Minimalist layouts keep things uncluttered while natural wood-grain textures and soft hand-drawn accents add tactile warmth. The result is comfortable, refined, and deeply human.",
+      "keywords": ["hygge", "nordic", "warm", "cozy", "minimal", "natural", "wood"],
+      "mood": "Comfortable and refined"
+    }
+  ]
+}

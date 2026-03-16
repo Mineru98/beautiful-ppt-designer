@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "themes": [
+    {
+      "id": "minimal-clean",
+      "primary": "#1A1A1A",
+      "secondary": "#4A4A4A",
+      "accent": "#0066CC",
+      "background": "#FFFFFF",
+      "surface": "#F7F7F7",
+      "text": "#1A1A1A",
+      "textLight": "#767676",
+      "heading": "#0D0D0D",
+      "border": "#E0E0E0"
+    },
+    {
+      "id": "corporate-modern",
+      "primary": "#003366",
+      "secondary": "#005B9A",
+      "accent": "#FF6B00",
+      "background": "#F4F6F9",
+      "surface": "#FFFFFF",
+      "text": "#1C2B3A",
+      "textLight": "#5A7A99",
+      "heading": "#003366",
+      "border": "#CBD8E5"
+    },
+    {
+      "id": "gradient-flow",
+      "primary": "#6C3DE0",
+      "secondary": "#E03D8F",
+      "accent": "#00D4FF",
+      "background": "#0F0A2E",
+      "surface": "rgba(255,255,255,0.10)",
+      "text": "#F0EEFF",
+      "textLight": "#A89FCE",
+      "heading": "#FFFFFF",
+      "border": "rgba(255,255,255,0.15)"
+    },
+    {
+      "id": "dark-elegant",
+      "primary": "#C9A84C",
+      "secondary": "#8B6FBF",
+      "accent": "#E8D87F",
+      "background": "#0D0D0D",
+      "surface": "#1A1A1A",
+      "text": "#E8E8E8",
+      "textLight": "#888888",
+      "heading": "#F5F0E8",
+      "border": "#2E2E2E"
+    },
+    {
+      "id": "nature-organic",
+      "primary": "#4A6741",
+      "secondary": "#C07B54",
+      "accent": "#D4A843",
+      "background": "#F5F0E8",
+      "surface": "#EDE6D6",
+      "text": "#2E2A22",
+      "textLight": "#7A6E5F",
+      "heading": "#2E3D28",
+      "border": "#C8BDA8"
+    },
+    {
+      "id": "tech-neon",
+      "primary": "#00FF9C",
+      "secondary": "#00BFFF",
+      "accent": "#FF2D78",
+      "background": "#080C14",
+      "surface": "#0D1520",
+      "text": "#C8E8FF",
+      "textLight": "#4A7A9B",
+      "heading": "#FFFFFF",
+      "border": "#0A2A40"
+    },
+    {
+      "id": "pastel-soft",
+      "primary": "#7B6FA0",
+      "secondary": "#E8857A",
+      "accent": "#5BAD8A",
+      "background": "#FDF8FF",
+      "surface": "#FFFFFF",
+      "text": "#3D3455",
+      "textLight": "#8E84A8",
+      "heading": "#4A3F6B",
+      "border": "#E5DCEF"
+    },
+    {
+      "id": "bold-geometric",
+      "primary": "#E52222",
+      "secondary": "#1A56CC",
+      "accent": "#F5C800",
+      "background": "#FFFFFF",
+      "surface": "#F2F2F2",
+      "text": "#111111",
+      "textLight": "#555555",
+      "heading": "#000000",
+      "border": "#CCCCCC"
+    },
+    {
+      "id": "classic-academic",
+      "primary": "#2C1810",
+      "secondary": "#7B3B2A",
+      "accent": "#B8962E",
+      "background": "#F9F5EE",
+      "surface": "#EFE8D8",
+      "text": "#2C2018",
+      "textLight": "#6B5B4E",
+      "heading": "#1A0F08",
+      "border": "#C8B89A"
+    },
+    {
+      "id": "scandinavian-hygge",
+      "primary": "#5C4A32",
+      "secondary": "#8B7355",
+      "accent": "#B5703A",
+      "background": "#F7F3EE",
+      "surface": "#EDE8E0",
+      "text": "#2E2520",
+      "textLight": "#7A6A5A",
+      "heading": "#1E1510",
+      "border": "#D4C8B8"
+    }
+  ]
+}
