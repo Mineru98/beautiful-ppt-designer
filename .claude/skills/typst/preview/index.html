@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beautiful-PPT Design Gallery</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Noto Sans CJK KR", "Segoe UI", sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 24px; }
+header { text-align: center; margin-bottom: 32px; }
+header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+header p { color: #6e6e73; font-size: 15px; margin-bottom: 20px; }
+.filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.filters button { padding: 8px 16px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.filters button:hover { border-color: #0071e3; color: #0071e3; }
+.filters button.active { background: #0071e3; color: #fff; border-color: #0071e3; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1400px; margin: 0 auto; }
+@media (max-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .grid { grid-template-columns: 1fr; } }
+.card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.card-preview { height: 120px; position: relative; display: flex; align-items: center; justify-content: center; }
+.card-preview .title-preview { font-size: 14px; font-weight: 600; opacity: 0.9; }
+.card-body { padding: 16px; }
+.card-tag { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 10px; background: #f0f0f5; color: #6e6e73; margin-bottom: 8px; }
+.card-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.card-mood { font-size: 12px; color: #6e6e73; margin-bottom: 10px; }
+.palette { display: flex; gap: 4px; }
+.palette .swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.15); }
+.compare-link { display: block; text-align: center; margin: 40px auto 0; padding: 12px 32px; background: #0071e3; color: #fff; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; width: fit-content; transition: background 0.2s; }
+.compare-link:hover { background: #0060c0; }
+footer { text-align: center; margin-top: 40px; color: #6e6e73; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Beautiful-PPT Design Gallery</h1>
+  <p>25종의 프레젠테이션 디자인 스타일을 탐색하세요. 카드를 클릭하면 샘플 슬라이드를 볼 수 있습니다.</p>
+</header>
+<div class="filters" id="filters"></div>
+<div class="grid" id="grid"></div>
+<a href="compare.html" class="compare-link">스타일 비교하기 →</a>
+<footer>Beautiful-PPT &middot; Typst 기반 프레젠테이션 생성 도구</footer>
+
+<script>
+const styles = [
+  { id:"minimal-clean", name:"미니멀 클린 / Minimal Clean", mood:"Calm professionalism", category:"비즈니스", colors:["#1A1A1A","#4A4A4A","#0066CC","#FFFFFF","#F7F7F7"], bg:"#FFFFFF", text:"#1A1A1A" },
+  { id:"corporate-modern", name:"코퍼레이트 모던 / Corporate Modern", mood:"Balanced and authoritative", category:"비즈니스", colors:["#003366","#005B9A","#FF6B00","#F4F6F9","#CBD8E5"], bg:"#F4F6F9", text:"#1C2B3A" },
+  { id:"gradient-flow", name:"그라디언트 플로우 / Gradient Flow", mood:"Energetic and contemporary", category:"모던", colors:["#6C3DE0","#E03D8F","#00D4FF","#0F0A2E","#A89FCE"], bg:"#0F0A2E", text:"#F0EEFF" },
+  { id:"dark-elegant", name:"다크 엘레건트 / Dark Elegant", mood:"Sophisticated and premium", category:"모던", colors:["#C9A84C","#8B6FBF","#E8D87F","#0D0D0D","#2E2E2E"], bg:"#0D0D0D", text:"#E8E8E8" },
+  { id:"nature-organic", name:"네이처 오가닉 / Nature Organic", mood:"Warm and approachable", category:"라이프스타일", colors:["#4A6741","#C07B54","#D4A843","#F5F0E8","#C8BDA8"], bg:"#F5F0E8", text:"#2E2A22" },
+  { id:"tech-neon", name:"테크 네온 / Tech Neon", mood:"Futuristic and innovative", category:"테크", colors:["#00FF9C","#00BFFF","#FF2D78","#080C14","#0A2A40"], bg:"#080C14", text:"#C8E8FF" },
+  { id:"pastel-soft", name:"파스텔 소프트 / Pastel Soft", mood:"Friendly and inviting", category:"라이프스타일", colors:["#7B6FA0","#E8857A","#5BAD8A","#FDF8FF","#E5DCEF"], bg:"#FDF8FF", text:"#3D3455" },
+  { id:"bold-geometric", name:"볼드 지오메트릭 / Bold Geometric", mood:"Striking and memorable", category:"모던", colors:["#E52222","#1A56CC","#F5C800","#FFFFFF","#CCCCCC"], bg:"#FFFFFF", text:"#111111" },
+  { id:"classic-academic", name:"클래식 아카데믹 / Classic Academic", mood:"Authoritative and timeless", category:"교육", colors:["#2C1810","#7B3B2A","#B8962E","#F9F5EE","#C8B89A"], bg:"#F9F5EE", text:"#2C2018" },
+  { id:"scandinavian-hygge", name:"스칸디나비안 휘게 / Scandinavian Hygge", mood:"Comfortable and refined", category:"라이프스타일", colors:["#5C4A32","#8B7355","#B5703A","#F7F3EE","#D4C8B8"], bg:"#F7F3EE", text:"#2E2520" },
+  { id:"medical-clinical", name:"메디컬 클리니컬 / Medical Clinical", mood:"Clean trust", category:"의료", colors:["#0077B6","#48CAE4","#00B4D8","#F8FDFF","#C4DFE9"], bg:"#F8FDFF", text:"#1A2E3B" },
+  { id:"pharma-biotech", name:"파마 바이오텍 / Pharma Biotech", mood:"Scientific precision", category:"의료", colors:["#2D6A4F","#40916C","#95D5B2","#F0FFF4","#B7D8C4"], bg:"#F0FFF4", text:"#1B3A2D" },
+  { id:"edu-classroom", name:"에듀 클래스룸 / Edu Classroom", mood:"Energetic learning", category:"교육", colors:["#FF6B35","#FFB563","#004E89","#FFFBF5","#E8D5C0"], bg:"#FFFBF5", text:"#2A1F14" },
+  { id:"edu-research", name:"에듀 리서치 / Edu Research", mood:"Scholarly depth", category:"교육", colors:["#1B4965","#5FA8D3","#CAE9FF","#F5F9FC","#C0D6E4"], bg:"#F5F9FC", text:"#1A2B38" },
+  { id:"startup-pitch", name:"스타트업 피치 / Startup Pitch", mood:"Bold disruption", category:"크리에이티브", colors:["#7209B7","#F72585","#4CC9F0","#FFFFFF","#E0CCF0"], bg:"#FFFFFF", text:"#1A0A2E" },
+  { id:"saas-product", name:"SaaS 프로덕트 / SaaS Product", mood:"Techy clarity", category:"테크", colors:["#3A0CA3","#4361EE","#4CC9F0","#F8F9FF","#D0D4F0"], bg:"#F8F9FF", text:"#1A1A3E" },
+  { id:"marketing-campaign", name:"마케팅 캠페인 / Marketing Campaign", mood:"Vibrant energy", category:"크리에이티브", colors:["#FF006E","#FB5607","#FFBE0B","#FFF8F0","#E8D0B8"], bg:"#FFF8F0", text:"#2A1A10" },
+  { id:"brand-storytelling", name:"브랜드 스토리텔링 / Brand Storytelling", mood:"Editorial elegance", category:"모던", colors:["#2B2D42","#8D99AE","#EF233C","#EDF2F4","#C8CCD6"], bg:"#EDF2F4", text:"#2B2D42" },
+  { id:"finance-trust", name:"파이낸스 트러스트 / Finance Trust", mood:"Institutional trust", category:"비즈니스", colors:["#003049","#023E7D","#0077B6","#F5F7FA","#C0CDD8"], bg:"#F5F7FA", text:"#1A2530" },
+  { id:"consulting-strategy", name:"컨설팅 스트래터지 / Consulting Strategy", mood:"Strategic clarity", category:"비즈니스", colors:["#14213D","#FCA311","#E5E5E5","#FFFFFF","#D0D0D0"], bg:"#FFFFFF", text:"#14213D" },
+  { id:"gov-accessible", name:"거버먼트 액세서블 / Gov Accessible", mood:"WCAG-compliant clarity", category:"공공", colors:["#1B3A4B","#455A64","#0288D1","#FAFAFA","#C0C0C0"], bg:"#FAFAFA", text:"#1A1A1A" },
+  { id:"ngo-impact", name:"NGO 임팩트 / NGO Impact", mood:"Earnest warmth", category:"공공", colors:["#606C38","#DDA15E","#BC6C25","#FEFAE0","#D8CCAA"], bg:"#FEFAE0", text:"#2A2510" },
+  { id:"creative-portfolio", name:"크리에이티브 포트폴리오 / Creative Portfolio", mood:"Avant-garde edge", category:"크리에이티브", colors:["#0D0D0D","#FF4500","#FFD700","#FFFFFF","#1A1A1A"], bg:"#FFFFFF", text:"#0D0D0D" },
+  { id:"retail-lifestyle", name:"리테일 라이프스타일 / Retail Lifestyle", mood:"Lifestyle warmth", category:"라이프스타일", colors:["#E07A5F","#F2CC8F","#81B29A","#F4F1DE","#D8CCAA"], bg:"#F4F1DE", text:"#2A2418" },
+  { id:"ai-futuristic", name:"AI 퓨처리스틱 / AI Futuristic", mood:"Cosmic intelligence", category:"테크", colors:["#6C63FF","#00F5D4","#FF6B9D","#0A0E27","#6A6EAA"], bg:"#0A0E27", text:"#D0D4FF" }
+];
+
+const categories = ["전체","비즈니스","모던","테크","교육","의료","공공","크리에이티브","라이프스타일"];
+
+const filtersEl = document.getElementById("filters");
+const gridEl = document.getElementById("grid");
+
+categories.forEach(cat => {
+  const btn = document.createElement("button");
+  btn.textContent = cat;
+  if (cat === "전체") btn.classList.add("active");
+  btn.addEventListener("click", () => {
+    filtersEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderGrid(cat);
+  });
+  filtersEl.appendChild(btn);
+});
+
+function renderGrid(filter) {
+  gridEl.innerHTML = "";
+  const filtered = filter === "전체" ? styles : styles.filter(s => s.category === filter);
+  filtered.forEach(s => {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = "styles/" + s.id + ".html";
+    a.innerHTML = `
+      <div class="card-preview" style="background:${s.bg}">
+        <span class="title-preview" style="color:${s.text}">${s.name.split(" / ")[0]}</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">${s.category}</span>
+        <div class="card-name">${s.name}</div>
+        <div class="card-mood">${s.mood}</div>
+        <div class="palette">
+          ${s.colors.map(c => `<div class="swatch" style="background:${c}"></div>`).join("")}
+        </div>
+      </div>`;
+    gridEl.appendChild(a);
+  });
+}
+
+renderGrid("전체");
+</script>
+</body>
+</html>

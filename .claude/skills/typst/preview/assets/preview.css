@@ -1,0 +1,273 @@
+/* preview.css - Shared stylesheet for all 25 style preview pages */
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   FONTS
+   ============================================================ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans CJK KR", "Segoe UI", sans-serif;
+  background: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES (defaults)
+   ============================================================ */
+:root {
+  --primary:    #1a1a2e;
+  --secondary:  #16213e;
+  --accent:     #e94560;
+  --bg:         #f5f5f5;
+  --surface:    #ffffff;
+  --text:       #1a1a1a;
+  --text-light: #666666;
+  --heading:    #1a1a2e;
+  --border:     #dddddd;
+}
+
+/* ============================================================
+   NAV TABS
+   ============================================================ */
+.preview-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.preview-nav a {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: background 0.15s, color 0.15s;
+}
+
+.preview-nav a:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ============================================================
+   SLIDE WRAPPER
+   ============================================================ */
+.slide-wrapper {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 960px;
+  height: 540px;
+}
+
+/* ============================================================
+   SLIDE CONTAINER (16:9)
+   ============================================================ */
+.slide-section {
+  display: none;
+  width: 960px;
+  height: 540px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  background: var(--bg);
+}
+
+/* Show first section when no anchor is present */
+.slide-section:first-of-type {
+  display: block;
+}
+
+/* :target-based section switching */
+.slide-section:target {
+  display: block;
+}
+
+/* Hide first-of-type when any section is targeted */
+:root:has(.slide-section:target) .slide-section:first-of-type:not(:target) {
+  display: none;
+}
+
+/* ============================================================
+   COVER SLIDE LAYOUT
+   ============================================================ */
+.slide-cover {
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.slide-cover .cover-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1.2;
+  margin-bottom: 14px;
+  letter-spacing: -0.5px;
+}
+
+.slide-cover .cover-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--secondary);
+  margin-bottom: 32px;
+}
+
+.slide-cover .cover-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.slide-cover .cover-meta .cover-author {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.slide-cover .cover-meta .cover-date {
+  color: var(--text-light);
+}
+
+/* ============================================================
+   CONTENT SLIDE LAYOUT
+   ============================================================ */
+.slide-content {
+  padding: 40px 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-content .slide-heading {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+.slide-content .bullet-list {
+  list-style: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.slide-content .bullet-list li {
+  font-size: 17px;
+  color: var(--text);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.slide-content .bullet-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ============================================================
+   DATA SLIDE LAYOUT
+   ============================================================ */
+.slide-data {
+  padding: 40px 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-data .slide-heading {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* ============================================================
+   BAR CHART (horizontal)
+   ============================================================ */
+.bar-chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bar-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  width: 60px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.bar-track {
+  flex: 1;
+  height: 32px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.bar-fill span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.bar-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-light);
+  width: 60px;
+  flex-shrink: 0;
+}

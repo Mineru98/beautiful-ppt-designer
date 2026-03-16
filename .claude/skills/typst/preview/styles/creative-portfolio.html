@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>크리에이티브 포트폴리오 / Creative Portfolio - Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #0D0D0D;
+      --secondary:  #FF4500;
+      --accent:     #FFD700;
+      --bg:         #FFFFFF;
+      --surface:    #F5F5F5;
+      --text:       #0D0D0D;
+      --text-light: #555555;
+      --heading:    #000000;
+      --border:     #1A1A1A;
+    }
+  </style>
+
+  <!-- Creative-Portfolio: Avant-garde archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       AVANT-GARDE archetype
+       Asymmetric overlapping elements with position:absolute.
+       Thick black borders (3px+). Bold red/gold accent splashes.
+       Gallery exhibition feel. Dramatic, artistic layout.
+    ---------------------------------------------------------------- */
+
+    /* --- COVER --- */
+    #cover {
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    /* Giant black block - left 55% */
+    #cover .cp-black-block {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 55%;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    /* Red slash diagonal */
+    #cover .cp-red-slash {
+      position: absolute;
+      top: -20px;
+      left: 48%;
+      width: 80px;
+      height: 580px;
+      background: var(--secondary);
+      transform: skewX(-8deg);
+      z-index: 2;
+    }
+
+    /* Gold top-right corner block */
+    #cover .cp-gold-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 180px;
+      height: 90px;
+      background: var(--accent);
+      z-index: 1;
+    }
+
+    /* Title block overlapping black and white */
+    #cover .cp-title-block {
+      position: absolute;
+      top: 80px;
+      left: 48px;
+      z-index: 4;
+    }
+
+    #cover .cp-eyebrow {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    #cover .cp-cover-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    #cover .cp-cover-title em {
+      display: block;
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    #cover .cp-cover-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      border-left: 3px solid var(--secondary);
+      padding-left: 12px;
+    }
+
+    /* Info on right side */
+    #cover .cp-info-block {
+      position: absolute;
+      bottom: 60px;
+      right: 48px;
+      z-index: 4;
+      text-align: right;
+    }
+
+    #cover .cp-info-author {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--heading);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #cover .cp-info-date {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* Bottom-left label overlapping corner */
+    #cover .cp-bottom-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: var(--secondary);
+      padding: 10px 28px;
+      z-index: 5;
+    }
+
+    #cover .cp-bottom-label span {
+      font-size: 12px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* --- CONTENT --- */
+    #content {
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    /* Top thick border */
+    #content .cp-top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--primary);
+    }
+
+    /* Accent bar */
+    #content .cp-accent-bar {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--secondary);
+    }
+
+    /* Number background - overlapping */
+    #content .cp-num-bg {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 180px;
+      font-weight: 900;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      user-select: none;
+      z-index: 0;
+      letter-spacing: -8px;
+    }
+
+    #content .cp-content-inner {
+      position: absolute;
+      top: 28px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 20px 52px;
+      z-index: 2;
+    }
+
+    #content .cp-heading-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 4px solid var(--primary);
+      padding-bottom: 14px;
+    }
+
+    #content .cp-heading-num {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--secondary);
+      letter-spacing: 2px;
+    }
+
+    #content .cp-heading {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--heading);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    #content .cp-bullets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+    }
+
+    #content .cp-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border: 3px solid var(--primary);
+      padding: 14px 16px;
+      background: var(--bg);
+    }
+
+    #content .cp-bullet-marker {
+      width: 20px;
+      height: 20px;
+      background: var(--secondary);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    #content .cp-bullet-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* Gold accent square decoration */
+    #content .cp-gold-sq {
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border: 3px solid var(--primary);
+      z-index: 3;
+    }
+
+    /* --- DATA --- */
+    #data {
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    #data .cp-data-left-band {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    #data .cp-data-accent-band {
+      position: absolute;
+      top: 0;
+      left: 16px;
+      width: 6px;
+      height: 100%;
+      background: var(--secondary);
+    }
+
+    #data .cp-data-inner {
+      position: absolute;
+      top: 0;
+      left: 38px;
+      right: 0;
+      bottom: 0;
+      padding: 24px 48px 24px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #data .cp-data-heading-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    #data .cp-data-heading {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--heading);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    #data .cp-data-tag {
+      background: var(--accent);
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 2px solid var(--primary);
+    }
+
+    #data .cp-chart {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    #data .cp-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #data .cp-bar-label {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--heading);
+      width: 40px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    #data .cp-bar-track {
+      flex: 1;
+      height: 40px;
+      background: var(--surface);
+      border: 3px solid var(--primary);
+      overflow: hidden;
+    }
+
+    #data .cp-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+
+    #data .cp-bar-fill.red {
+      background: var(--secondary);
+    }
+
+    #data .cp-bar-fill.gold {
+      background: var(--accent);
+    }
+
+    #data .cp-bar-fill span {
+      font-size: 14px;
+      font-weight: 900;
+      color: #FFFFFF;
+    }
+
+    #data .cp-bar-fill.gold span {
+      color: var(--primary);
+    }
+
+    #data .cp-bar-value {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      width: 56px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- SECTION 1: COVER -->
+    <section class="slide-section" id="cover">
+      <div class="cp-black-block"></div>
+      <div class="cp-red-slash"></div>
+      <div class="cp-gold-corner"></div>
+
+      <div class="cp-title-block">
+        <p class="cp-eyebrow">Annual Report 2026</p>
+        <h1 class="cp-cover-title">
+          2026 연간<br>
+          <em>사업 보고서</em>
+        </h1>
+        <p class="cp-cover-subtitle">성장과 혁신의 여정</p>
+      </div>
+
+      <div class="cp-info-block">
+        <div class="cp-info-author">홍길동 / 전략기획팀</div>
+        <div class="cp-info-date">2026년 3월</div>
+      </div>
+
+      <div class="cp-bottom-label">
+        <span>Report</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="cp-top-bar"></div>
+      <div class="cp-accent-bar"></div>
+      <div class="cp-num-bg">04</div>
+      <div class="cp-gold-sq"></div>
+
+      <div class="cp-content-inner">
+        <div class="cp-heading-wrap">
+          <span class="cp-heading-num">— 02</span>
+          <h2 class="cp-heading">핵심 성과 요약</h2>
+        </div>
+        <div class="cp-bullets">
+          <div class="cp-bullet-item">
+            <div class="cp-bullet-marker"></div>
+            <span class="cp-bullet-text">매출 전년 대비 32% 성장 달성</span>
+          </div>
+          <div class="cp-bullet-item">
+            <div class="cp-bullet-marker"></div>
+            <span class="cp-bullet-text">신규 고객 1,200개사 확보</span>
+          </div>
+          <div class="cp-bullet-item">
+            <div class="cp-bullet-marker"></div>
+            <span class="cp-bullet-text">직원 만족도 4.5/5.0 기록</span>
+          </div>
+          <div class="cp-bullet-item">
+            <div class="cp-bullet-marker"></div>
+            <span class="cp-bullet-text">해외 시장 3개국 진출 완료</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA -->
+    <section class="slide-section" id="data">
+      <div class="cp-data-left-band"></div>
+      <div class="cp-data-accent-band"></div>
+      <div class="cp-data-inner">
+        <div class="cp-data-heading-wrap">
+          <h2 class="cp-data-heading">분기별 실적 추이</h2>
+          <span class="cp-data-tag">2026 Q1–Q4</span>
+        </div>
+        <div class="cp-chart">
+          <div class="cp-bar-row">
+            <div class="cp-bar-label">Q1</div>
+            <div class="cp-bar-track">
+              <div class="cp-bar-fill" style="width:40%"><span>2.4억</span></div>
+            </div>
+            <div class="cp-bar-value">40%</div>
+          </div>
+          <div class="cp-bar-row">
+            <div class="cp-bar-label">Q2</div>
+            <div class="cp-bar-track">
+              <div class="cp-bar-fill red" style="width:52%"><span>3.1억</span></div>
+            </div>
+            <div class="cp-bar-value">52%</div>
+          </div>
+          <div class="cp-bar-row">
+            <div class="cp-bar-label">Q3</div>
+            <div class="cp-bar-track">
+              <div class="cp-bar-fill" style="width:63%"><span>3.8억</span></div>
+            </div>
+            <div class="cp-bar-value">63%</div>
+          </div>
+          <div class="cp-bar-row">
+            <div class="cp-bar-label">Q4</div>
+            <div class="cp-bar-track">
+              <div class="cp-bar-fill gold" style="width:75%"><span>4.5억</span></div>
+            </div>
+            <div class="cp-bar-value">75%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.slide-wrapper -->
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>테크 네온 / Tech Neon - Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #00FF9C;
+      --secondary:  #00BFFF;
+      --accent:     #FF2D78;
+      --bg:         #080C14;
+      --surface:    #0D1520;
+      --text:       #C8E8FF;
+      --text-light: #4A7A9B;
+      --heading:    #FFFFFF;
+      --border:     #0A2A40;
+    }
+  </style>
+
+  <!-- Tech-Neon: Circuit Grid archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       CIRCUIT GRID archetype
+       Dark bg with neon-colored border lines.
+       CSS grid-line pattern background. Monospace font for numbers.
+       Neon glow box-shadows on elements.
+    ---------------------------------------------------------------- */
+
+    body {
+      background: #030508;
+    }
+
+    .preview-nav a {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .preview-nav a:hover {
+      background: var(--primary);
+      color: #000;
+    }
+
+    /* Grid background pattern for all slides */
+    .slide-section {
+      background: var(--bg);
+      background-image:
+        repeating-linear-gradient(0deg,   transparent, transparent 39px, rgba(0,191,255,0.07) 39px, rgba(0,191,255,0.07) 40px),
+        repeating-linear-gradient(90deg,  transparent, transparent 39px, rgba(0,191,255,0.07) 39px, rgba(0,191,255,0.07) 40px);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans CJK KR", "Segoe UI", sans-serif;
+    }
+
+    /* --- Scanline overlay --- */
+    .slide-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.06) 3px,
+        rgba(0,0,0,0.06) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ========== COVER ========== */
+    #cover {
+      display: none;
+    }
+
+    #cover .neon-frame {
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(0,255,156,0.3);
+      box-shadow:
+        inset 0 0 40px rgba(0,255,156,0.05),
+        0 0 60px rgba(0,255,156,0.08);
+      z-index: 1;
+    }
+
+    /* Corner accents */
+    #cover .neon-frame::before,
+    #cover .neon-frame::after {
+      content: "";
+      position: absolute;
+    }
+
+    #cover .corner-tl,
+    #cover .corner-tr,
+    #cover .corner-bl,
+    #cover .corner-br {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      z-index: 2;
+    }
+
+    #cover .corner-tl { top: 20px; left: 20px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); box-shadow: -2px -2px 8px rgba(0,255,156,0.5); }
+    #cover .corner-tr { top: 20px; right: 20px; border-top: 2px solid var(--primary); border-right: 2px solid var(--primary); box-shadow: 2px -2px 8px rgba(0,255,156,0.5); }
+    #cover .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid var(--primary); border-left: 2px solid var(--primary); box-shadow: -2px 2px 8px rgba(0,255,156,0.5); }
+    #cover .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); box-shadow: 2px 2px 8px rgba(0,255,156,0.5); }
+
+    #cover .cover-body {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+      z-index: 3;
+    }
+
+    #cover .cover-tag {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0,255,156,0.8);
+      margin-bottom: 16px;
+    }
+
+    #cover .cover-title {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 30px rgba(0,191,255,0.4);
+    }
+
+    #cover .cover-subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--secondary);
+      text-shadow: 0 0 15px rgba(0,191,255,0.6);
+      margin-bottom: 0;
+    }
+
+    #cover .cover-footer {
+      position: absolute;
+      bottom: 36px;
+      left: 80px;
+      right: 80px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0,191,255,0.2);
+      padding-top: 12px;
+    }
+
+    #cover .cover-author {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+
+    #cover .cover-date {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    /* Neon horizontal line accent */
+    #cover .neon-line {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+      box-shadow: 0 0 12px rgba(0,255,156,0.6);
+      z-index: 3;
+      top: 50%;
+      margin-top: 60px;
+    }
+
+    /* ========== CONTENT ========== */
+    #content {
+      display: none;
+    }
+
+    #content .neon-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 68px;
+      background: linear-gradient(135deg, rgba(0,255,156,0.12) 0%, rgba(0,191,255,0.08) 100%);
+      border-bottom: 2px solid var(--primary);
+      box-shadow: 0 2px 20px rgba(0,255,156,0.2);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    #content .neon-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 12px rgba(0,255,156,0.7);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    #content .neon-header .header-tag {
+      margin-left: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10px;
+      color: var(--text-light);
+      letter-spacing: 2px;
+    }
+
+    #content .content-body {
+      position: absolute;
+      top: 68px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      z-index: 2;
+    }
+
+    #content .content-main {
+      padding: 28px 32px 28px 48px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+    }
+
+    #content .bullet-list {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #content .bullet-list li {
+      font-size: 15px;
+      color: var(--text);
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    #content .bullet-list li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 8px rgba(0,255,156,0.8);
+    }
+
+    #content .content-stats {
+      padding: 28px 32px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .neon-stat-card {
+      background: rgba(0,255,156,0.04);
+      border: 1px solid rgba(0,255,156,0.2);
+      border-radius: 4px;
+      padding: 14px 18px;
+      box-shadow: inset 0 0 20px rgba(0,255,156,0.03), 0 0 8px rgba(0,255,156,0.06);
+    }
+
+    .neon-stat-card .sc-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .neon-stat-card .sc-value {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 12px rgba(0,255,156,0.7);
+    }
+
+    .neon-stat-card .sc-sub {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    /* ========== DATA ========== */
+    #data {
+      display: none;
+    }
+
+    #data .neon-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 68px;
+      background: linear-gradient(135deg, rgba(255,45,120,0.12) 0%, rgba(0,191,255,0.08) 100%);
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 2px 20px rgba(255,45,120,0.2);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    #data .neon-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(255,45,120,0.7);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    #data .neon-header .header-tag {
+      margin-left: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10px;
+      color: var(--text-light);
+      letter-spacing: 2px;
+    }
+
+    #data .data-body {
+      position: absolute;
+      top: 68px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      z-index: 2;
+    }
+
+    #data .bar-chart {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 8px;
+    }
+
+    #data .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #data .bar-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--secondary);
+      text-shadow: 0 0 8px rgba(0,191,255,0.6);
+      width: 36px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    #data .bar-track {
+      flex: 1;
+      height: 34px;
+      background: rgba(10,42,64,0.8);
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(0,191,255,0.15);
+    }
+
+    #data .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      box-shadow: 2px 0 12px rgba(0,255,156,0.5);
+    }
+
+    #data .bar-fill span {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    #data .bar-fill.accent {
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+      box-shadow: 2px 0 12px rgba(255,45,120,0.5);
+    }
+
+    #data .bar-fill.accent span {
+      color: #fff;
+    }
+
+    #data .bar-value {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-light);
+      width: 52px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- COVER -->
+    <section class="slide-section" id="cover">
+      <div class="neon-frame"></div>
+      <div class="corner-tl"></div>
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <div class="corner-br"></div>
+
+      <div class="cover-body">
+        <p class="cover-tag">// Annual Report 2026</p>
+        <h1 class="cover-title">2026 연간 사업 보고서</h1>
+        <p class="cover-subtitle">성장과 혁신의 여정</p>
+      </div>
+
+      <div class="neon-line"></div>
+
+      <div class="cover-footer">
+        <span class="cover-author">홍길동 / 전략기획팀</span>
+        <span class="cover-date">2026년 3월</span>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="neon-header">
+        <h2>핵심 성과 요약</h2>
+        <span class="header-tag">HIGHLIGHTS</span>
+      </div>
+
+      <div class="content-body">
+        <div class="content-main">
+          <ul class="bullet-list">
+            <li>매출 전년 대비 32% 성장 달성</li>
+            <li>신규 고객 1,200개사 확보</li>
+            <li>직원 만족도 4.5/5.0 기록</li>
+            <li>해외 시장 3개국 진출 완료</li>
+          </ul>
+        </div>
+
+        <div class="content-stats">
+          <div class="neon-stat-card">
+            <div class="sc-label">매출 성장</div>
+            <div class="sc-value">+32%</div>
+            <div class="sc-sub">전년 대비</div>
+          </div>
+          <div class="neon-stat-card">
+            <div class="sc-label">신규 고객</div>
+            <div class="sc-value">1,200</div>
+            <div class="sc-sub">개사 확보</div>
+          </div>
+          <div class="neon-stat-card">
+            <div class="sc-label">해외 진출</div>
+            <div class="sc-value">3개국</div>
+            <div class="sc-sub">신규 시장</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section class="slide-section" id="data">
+      <div class="neon-header">
+        <h2>분기별 실적 추이</h2>
+        <span class="header-tag">QUARTERLY</span>
+      </div>
+
+      <div class="data-body">
+        <div class="bar-chart">
+
+          <div class="bar-row">
+            <div class="bar-label">Q1</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:40%">
+                <span>2.4억</span>
+              </div>
+            </div>
+            <div class="bar-value">40%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q2</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:52%">
+                <span>3.1억</span>
+              </div>
+            </div>
+            <div class="bar-value">52%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q3</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:63%">
+                <span>3.8억</span>
+              </div>
+            </div>
+            <div class="bar-value">63%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q4</div>
+            <div class="bar-track">
+              <div class="bar-fill accent" style="width:75%">
+                <span>4.5억</span>
+              </div>
+            </div>
+            <div class="bar-value">75%</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

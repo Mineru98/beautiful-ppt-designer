@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>클래식 아카데믹 / Classic Academic - Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #2C1810;
+      --secondary:  #7B3B2A;
+      --accent:     #B8962E;
+      --bg:         #F9F5EE;
+      --surface:    #EFE8D8;
+      --text:       #2C2018;
+      --text-light: #6B5B4E;
+      --heading:    #1A0F08;
+      --border:     #C8B89A;
+    }
+  </style>
+
+  <!-- Classic-Academic: Column Layout archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       COLUMN LAYOUT archetype
+       Serif font (Georgia) for headings. 2-column journal-style layout.
+       Gold accent underlines. Traditional structured feel.
+       Decorative gold rule lines.
+    ---------------------------------------------------------------- */
+
+    body {
+      background: #D8CEBA;
+    }
+
+    .preview-nav a {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 12px;
+    }
+
+    .preview-nav a:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .slide-section {
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans CJK KR", "Segoe UI", sans-serif;
+    }
+
+    /* ========== COVER ========== */
+    #cover {
+      display: none;
+      background: var(--bg);
+    }
+
+    /* Top decorative rule */
+    #cover .rule-top {
+      position: absolute;
+      top: 32px;
+      left: 60px;
+      right: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+      z-index: 2;
+    }
+
+    #cover .rule-top::before,
+    #cover .rule-top::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Bottom decorative rule */
+    #cover .rule-bottom {
+      position: absolute;
+      bottom: 32px;
+      left: 60px;
+      right: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+      z-index: 2;
+    }
+
+    #cover .rule-bottom::before {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+
+    #cover .cover-body {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px;
+      z-index: 3;
+    }
+
+    #cover .cover-eyebrow {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* Gold ornament */
+    #cover .cover-ornament {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    #cover .cover-ornament::before,
+    #cover .cover-ornament::after {
+      content: "◆";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8px;
+      color: var(--accent);
+    }
+
+    #cover .cover-ornament::before { left: -14px; }
+    #cover .cover-ornament::after  { right: -14px; }
+
+    #cover .cover-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    #cover .cover-subtitle {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--secondary);
+      margin-bottom: 28px;
+    }
+
+    #cover .cover-divider {
+      width: 80px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto 20px;
+    }
+
+    #cover .cover-meta {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    #cover .cover-author {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ========== CONTENT ========== */
+    #content {
+      display: none;
+      background: var(--bg);
+    }
+
+    #content .page-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: var(--primary);
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 14px;
+      z-index: 2;
+    }
+
+    #content .page-header h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.3px;
+    }
+
+    /* Gold rule under header */
+    #content .header-rule {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary) 60%, transparent);
+      z-index: 2;
+    }
+
+    #content .content-body {
+      position: absolute;
+      top: 75px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 0;
+      z-index: 2;
+    }
+
+    /* Left column: journal-style bullet list */
+    #content .col-main {
+      padding: 28px 32px 28px 60px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    #content .col-label {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #content .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    #content .bullet-list li {
+      font-size: 15px;
+      color: var(--text);
+      padding: 11px 0 11px 24px;
+      position: relative;
+      border-bottom: 1px solid rgba(200,184,154,0.4);
+      line-height: 1.5;
+    }
+
+    #content .bullet-list li:last-child {
+      border-bottom: none;
+    }
+
+    #content .bullet-list li::before {
+      content: "§";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    /* Right column: serif stat cards */
+    #content .col-stats {
+      padding: 28px 24px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #content .col-stats .col-label {
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .academic-stat {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .academic-stat:last-child {
+      border-bottom: none;
+    }
+
+    .academic-stat .as-value {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .academic-stat .as-label {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Gold underline on value */
+    .academic-stat .as-rule {
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* ========== DATA ========== */
+    #data {
+      display: none;
+      background: var(--bg);
+    }
+
+    #data .page-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: var(--secondary);
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 14px;
+      z-index: 2;
+    }
+
+    #data .page-header h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.3px;
+    }
+
+    #data .header-rule {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--primary) 60%, transparent);
+      z-index: 2;
+    }
+
+    #data .data-body {
+      position: absolute;
+      top: 75px;
+      left: 60px;
+      right: 60px;
+      bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      z-index: 2;
+    }
+
+    #data .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #data .bar-label {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--secondary);
+      width: 36px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    #data .bar-track {
+      flex: 1;
+      height: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    #data .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+
+    #data .bar-fill span {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
+
+    #data .bar-fill.accent {
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+    }
+
+    #data .bar-value {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--accent);
+      width: 52px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- COVER -->
+    <section class="slide-section" id="cover">
+      <div class="rule-top"></div>
+      <div class="rule-bottom"></div>
+
+      <div class="cover-body">
+        <p class="cover-eyebrow">Annual Report</p>
+        <div class="cover-ornament"></div>
+        <h1 class="cover-title">2026 연간 사업 보고서</h1>
+        <p class="cover-subtitle">성장과 혁신의 여정</p>
+        <div class="cover-divider"></div>
+        <div class="cover-meta">
+          <span class="cover-author">홍길동 / 전략기획팀</span>
+          <span>2026년 3월</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="page-header">
+        <h2>핵심 성과 요약</h2>
+      </div>
+      <div class="header-rule"></div>
+
+      <div class="content-body">
+        <div class="col-main">
+          <div class="col-label">Key Highlights</div>
+          <ul class="bullet-list">
+            <li>매출 전년 대비 32% 성장 달성</li>
+            <li>신규 고객 1,200개사 확보</li>
+            <li>직원 만족도 4.5/5.0 기록</li>
+            <li>해외 시장 3개국 진출 완료</li>
+          </ul>
+        </div>
+
+        <div class="col-stats">
+          <div class="col-label">Performance Metrics</div>
+          <div class="academic-stat">
+            <div class="as-value">+32%</div>
+            <div class="as-rule"></div>
+            <div class="as-label">매출 성장 · 전년 대비</div>
+          </div>
+          <div class="academic-stat">
+            <div class="as-value">1,200</div>
+            <div class="as-rule"></div>
+            <div class="as-label">신규 고객 개사 확보</div>
+          </div>
+          <div class="academic-stat">
+            <div class="as-value">3개국</div>
+            <div class="as-rule"></div>
+            <div class="as-label">해외 신규 시장 진출</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section class="slide-section" id="data">
+      <div class="page-header">
+        <h2>분기별 실적 추이</h2>
+      </div>
+      <div class="header-rule"></div>
+
+      <div class="data-body">
+
+        <div class="bar-row">
+          <div class="bar-label">Q1</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:40%">
+              <span>2.4억</span>
+            </div>
+          </div>
+          <div class="bar-value">40%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Q2</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:52%">
+              <span>3.1억</span>
+            </div>
+          </div>
+          <div class="bar-value">52%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Q3</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:63%">
+              <span>3.8억</span>
+            </div>
+          </div>
+          <div class="bar-value">63%</div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Q4</div>
+          <div class="bar-track">
+            <div class="bar-fill accent" style="width:75%">
+              <span>4.5억</span>
+            </div>
+          </div>
+          <div class="bar-value">75%</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

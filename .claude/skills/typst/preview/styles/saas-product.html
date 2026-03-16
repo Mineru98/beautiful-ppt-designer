@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SaaS Product - Dashboard Cards Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #3A0CA3;
+      --secondary:  #4361EE;
+      --accent:     #4CC9F0;
+      --bg:         #F8F9FF;
+      --surface:    #EEF0FF;
+      --text:       #1A1A3E;
+      --text-light: #6A6A9E;
+      --heading:    #1A0660;
+      --border:     #D0D4F0;
+    }
+  </style>
+
+  <!-- SaaS Product: Dashboard Cards archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       DASHBOARD CARDS archetype
+       Card-based grid layout. Subtle shadows. Metric boxes with
+       icon-placeholder circles. Clean SaaS dashboard aesthetic.
+    ---------------------------------------------------------------- */
+
+    /* --- COVER --- */
+    #cover {
+      background: var(--bg);
+    }
+
+    #cover .cover-top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+    }
+
+    #cover .cover-inner {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 64px;
+      gap: 40px;
+    }
+
+    #cover .cover-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #cover .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    #cover .cover-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    #cover .cover-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+
+    #cover .cover-subtitle {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    #cover .cover-meta-row {
+      display: flex;
+      gap: 24px;
+    }
+
+    #cover .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    #cover .cover-meta-item .meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    #cover .cover-meta-item .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    #cover .cover-right {
+      width: 300px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cover-metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(58,12,163,0.06);
+    }
+
+    .cover-metric-card .cmc-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--primary);
+      margin-bottom: 10px;
+      opacity: 0.15;
+    }
+
+    .cover-metric-card.accent-card .cmc-icon {
+      background: var(--accent);
+      opacity: 1;
+    }
+
+    .cover-metric-card .cmc-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .cover-metric-card .cmc-label {
+      font-size: 10px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .cover-metric-card.accent-card .cmc-value {
+      color: var(--secondary);
+    }
+
+    /* --- CONTENT (2x2 card grid) --- */
+    #content {
+      background: var(--bg);
+    }
+
+    #content .content-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      justify-content: space-between;
+    }
+
+    #content .content-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    #content .header-dot-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    #content .header-dot-row span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    #content .header-dot-row span:first-child {
+      background: var(--accent);
+    }
+
+    #content .content-grid {
+      position: absolute;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+      padding: 20px 48px 24px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 10px rgba(58,12,163,0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .kpi-card .kpi-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kpi-card .kpi-icon-wrap .kpi-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.2;
+    }
+
+    .kpi-card.highlight .kpi-icon-wrap {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .kpi-card.highlight .kpi-icon-wrap .kpi-dot {
+      background: #fff;
+      opacity: 1;
+    }
+
+    .kpi-card .kpi-body {
+      flex: 1;
+    }
+
+    .kpi-card .kpi-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .kpi-card .kpi-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .kpi-card.highlight .kpi-text {
+      color: var(--heading);
+    }
+
+    .kpi-card .kpi-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    /* --- DATA --- */
+    #data {
+      background: var(--bg);
+    }
+
+    #data .data-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    #data .data-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    #data .data-body {
+      position: absolute;
+      top: 64px; left: 0; right: 0; bottom: 0;
+      padding: 24px 48px 28px;
+      display: flex;
+      gap: 24px;
+    }
+
+    #data .chart-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    #data .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #data .bar-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-light);
+      width: 28px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    #data .bar-track {
+      flex: 1;
+      height: 38px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #data .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+
+    #data .bar-fill.q4 {
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+    }
+
+    #data .bar-fill span {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    #data .bar-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-light);
+      width: 40px;
+      flex-shrink: 0;
+    }
+
+    #data .data-side {
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .data-stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      box-shadow: 0 2px 8px rgba(58,12,163,0.04);
+    }
+
+    .data-stat-card .dsc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .data-stat-card .dsc-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .data-stat-card .dsc-sub {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .data-stat-card.accent-stat .dsc-value {
+      color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- SECTION 1: COVER -->
+    <section class="slide-section" id="cover">
+      <div class="cover-top-bar"></div>
+
+      <div class="cover-inner">
+        <div class="cover-left">
+          <div class="cover-badge">Annual Report 2026</div>
+          <h1 class="cover-title">2026 연간 사업 보고서</h1>
+          <p class="cover-subtitle">성장과 혁신의 여정</p>
+          <div class="cover-meta-row">
+            <div class="cover-meta-item">
+              <span class="meta-label">Presenter</span>
+              <span class="meta-value">홍길동 / 전략기획팀</span>
+            </div>
+            <div class="cover-meta-item">
+              <span class="meta-label">Date</span>
+              <span class="meta-value">2026년 3월</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <div class="cover-metric-card">
+            <div class="cmc-icon"></div>
+            <div class="cmc-value">+32%</div>
+            <div class="cmc-label">매출 성장</div>
+          </div>
+          <div class="cover-metric-card accent-card">
+            <div class="cmc-icon"></div>
+            <div class="cmc-value">1,200</div>
+            <div class="cmc-label">신규 고객사</div>
+          </div>
+          <div class="cover-metric-card">
+            <div class="cmc-icon"></div>
+            <div class="cmc-value">4.5</div>
+            <div class="cmc-label">직원 만족도</div>
+          </div>
+          <div class="cover-metric-card">
+            <div class="cmc-icon"></div>
+            <div class="cmc-value">3개국</div>
+            <div class="cmc-label">해외 진출</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="content-header">
+        <h2>핵심 성과 요약</h2>
+        <div class="header-dot-row">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="kpi-card highlight">
+          <div class="kpi-icon-wrap"><div class="kpi-dot"></div></div>
+          <div class="kpi-body">
+            <div class="kpi-label">Revenue Growth</div>
+            <div class="kpi-text">매출 전년 대비 32% 성장 달성</div>
+            <div class="kpi-badge">+32% YoY</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap"><div class="kpi-dot"></div></div>
+          <div class="kpi-body">
+            <div class="kpi-label">New Customers</div>
+            <div class="kpi-text">신규 고객 1,200개사 확보</div>
+            <div class="kpi-badge">1,200 사</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap"><div class="kpi-dot"></div></div>
+          <div class="kpi-body">
+            <div class="kpi-label">Employee NPS</div>
+            <div class="kpi-text">직원 만족도 4.5/5.0 기록</div>
+            <div class="kpi-badge">4.5 / 5.0</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrap"><div class="kpi-dot"></div></div>
+          <div class="kpi-body">
+            <div class="kpi-label">Global Expansion</div>
+            <div class="kpi-text">해외 시장 3개국 진출 완료</div>
+            <div class="kpi-badge">3 Markets</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA -->
+    <section class="slide-section" id="data">
+      <div class="data-header">
+        <h2>분기별 실적 추이</h2>
+      </div>
+
+      <div class="data-body">
+        <div class="chart-area">
+          <div class="bar-row">
+            <div class="bar-label">Q1</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:40%"><span>2.4억</span></div>
+            </div>
+            <div class="bar-value">40%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Q2</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:52%"><span>3.1억</span></div>
+            </div>
+            <div class="bar-value">52%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Q3</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:63%"><span>3.8억</span></div>
+            </div>
+            <div class="bar-value">63%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Q4</div>
+            <div class="bar-track">
+              <div class="bar-fill q4" style="width:75%"><span>4.5억</span></div>
+            </div>
+            <div class="bar-value">75%</div>
+          </div>
+        </div>
+
+        <div class="data-side">
+          <div class="data-stat-card">
+            <div class="dsc-label">연간 총매출</div>
+            <div class="dsc-value">13.8억</div>
+            <div class="dsc-sub">FY 2026</div>
+          </div>
+          <div class="data-stat-card accent-stat">
+            <div class="dsc-label">성장률</div>
+            <div class="dsc-value">+32%</div>
+            <div class="dsc-sub">전년 대비</div>
+          </div>
+          <div class="data-stat-card">
+            <div class="dsc-label">최고 분기</div>
+            <div class="dsc-value">Q4</div>
+            <div class="dsc-sub">4.5억 달성</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

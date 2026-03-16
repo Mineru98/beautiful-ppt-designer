@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>코퍼레이트 모던 / Corporate Modern - Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <!-- Corporate-Modern color overrides -->
+  <style>
+    :root {
+      --primary:    #003366;
+      --secondary:  #005B9A;
+      --accent:     #FF6B00;
+      --bg:         #F4F6F9;
+      --surface:    #FFFFFF;
+      --text:       #1C2B3A;
+      --text-light: #5A7A99;
+      --heading:    #003366;
+      --border:     #CBD8E5;
+    }
+  </style>
+
+  <!-- Corporate-Modern: Header Band archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       HEADER BAND archetype
+       A full-width colored band spans the top of every slide.
+       Content slides use a 2-column grid.
+       Orange accent sidebar elements add visual rhythm.
+    ---------------------------------------------------------------- */
+
+    /* --- Shared band --- */
+    .cm-band {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background: var(--primary);
+      z-index: 1;
+    }
+
+    /* Thin accent stripe at bottom of band */
+    .cm-band::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    /* --- COVER --- */
+    #cover {
+      background: var(--bg);
+    }
+
+    #cover .cm-band {
+      height: 200px;
+    }
+
+    #cover .cover-body {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px;
+      z-index: 2;
+    }
+
+    #cover .cover-body .tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+
+    #cover .cover-title {
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    #cover .cover-subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0;
+    }
+
+    #cover .cover-footer {
+      position: absolute;
+      bottom: 32px;
+      left: 60px;
+      right: 60px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #cover .cover-footer .cover-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    #cover .cover-footer .cover-date {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* Decorative right-side circle on cover */
+    #cover .cm-circle {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: var(--secondary);
+      opacity: 0.35;
+      z-index: 1;
+    }
+
+    /* --- CONTENT (2-column grid) --- */
+    #content {
+      background: var(--surface);
+    }
+
+    #content .cm-band {
+      height: 72px;
+    }
+
+    #content .content-body {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 0;
+      z-index: 2;
+    }
+
+    #content .content-main {
+      padding: 28px 40px 28px 60px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #content .content-sidebar {
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #content .slide-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 20px;
+    }
+
+    /* Heading in band */
+    #content .band-heading {
+      position: absolute;
+      top: 0;
+      left: 60px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+
+    #content .band-heading h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+    }
+
+    #content .bullet-list {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #content .bullet-list li {
+      font-size: 16px;
+      color: var(--text);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    #content .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Sidebar stat cards */
+    .sidebar-card {
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 4px rgba(0,60,100,0.08);
+    }
+
+    .sidebar-card .sc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-card .sc-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .sidebar-card .sc-sub {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    /* --- DATA --- */
+    #data {
+      background: var(--surface);
+    }
+
+    #data .cm-band {
+      height: 72px;
+    }
+
+    #data .band-heading {
+      position: absolute;
+      top: 0;
+      left: 60px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+
+    #data .band-heading h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    #data .data-body {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 32px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      z-index: 2;
+    }
+
+    #data .bar-chart {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 10px;
+    }
+
+    #data .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #data .bar-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      width: 36px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    #data .bar-track {
+      flex: 1;
+      height: 36px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    #data .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #data .bar-fill span {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Accent bar for Q4 */
+    #data .bar-fill.accent {
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+    }
+
+    #data .bar-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      width: 60px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tab navigation -->
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- ============================================================
+         SECTION 1: COVER
+         ============================================================ -->
+    <section class="slide-section" id="cover">
+      <div class="cm-band"></div>
+      <div class="cm-circle"></div>
+
+      <div class="cover-body">
+        <p class="tag">Annual Report 2026</p>
+        <h1 class="cover-title">2026 연간 사업 보고서</h1>
+        <p class="cover-subtitle">성장과 혁신의 여정</p>
+      </div>
+
+      <div class="cover-footer">
+        <span class="cover-author">홍길동 / 전략기획팀</span>
+        <span class="cover-date">2026년 3월</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: CONTENT
+         ============================================================ -->
+    <section class="slide-section" id="content">
+      <div class="cm-band"></div>
+
+      <div class="band-heading">
+        <h2>핵심 성과 요약</h2>
+      </div>
+
+      <div class="content-body">
+        <div class="content-main">
+          <ul class="bullet-list">
+            <li>매출 전년 대비 32% 성장 달성</li>
+            <li>신규 고객 1,200개사 확보</li>
+            <li>직원 만족도 4.5/5.0 기록</li>
+            <li>해외 시장 3개국 진출 완료</li>
+          </ul>
+        </div>
+
+        <div class="content-sidebar">
+          <div class="sidebar-card">
+            <div class="sc-label">매출 성장</div>
+            <div class="sc-value">+32%</div>
+            <div class="sc-sub">전년 대비</div>
+          </div>
+          <div class="sidebar-card">
+            <div class="sc-label">신규 고객</div>
+            <div class="sc-value">1,200</div>
+            <div class="sc-sub">개사 확보</div>
+          </div>
+          <div class="sidebar-card">
+            <div class="sc-label">해외 진출</div>
+            <div class="sc-value">3개국</div>
+            <div class="sc-sub">신규 시장</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: DATA
+         ============================================================ -->
+    <section class="slide-section" id="data">
+      <div class="cm-band"></div>
+
+      <div class="band-heading">
+        <h2>분기별 실적 추이</h2>
+      </div>
+
+      <div class="data-body">
+        <div class="bar-chart">
+
+          <div class="bar-row">
+            <div class="bar-label">Q1</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 40%">
+                <span>2.4억</span>
+              </div>
+            </div>
+            <div class="bar-value">40%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q2</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 52%">
+                <span>3.1억</span>
+              </div>
+            </div>
+            <div class="bar-value">52%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q3</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 63%">
+                <span>3.8억</span>
+              </div>
+            </div>
+            <div class="bar-value">63%</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">Q4</div>
+            <div class="bar-track">
+              <div class="bar-fill accent" style="width: 75%">
+                <span>4.5억</span>
+              </div>
+            </div>
+            <div class="bar-value">75%</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.slide-wrapper -->
+
+</body>
+</html>

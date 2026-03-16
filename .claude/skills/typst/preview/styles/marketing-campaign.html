@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marketing Campaign - Bold Split Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #FF006E;
+      --secondary:  #FB5607;
+      --accent:     #FFBE0B;
+      --bg:         #FFF8F0;
+      --surface:    #FFE8D6;
+      --text:       #2A1A10;
+      --text-light: #8A6A50;
+      --heading:    #1A0800;
+      --border:     #E8D0B8;
+    }
+  </style>
+
+  <!-- Marketing Campaign: Bold Split archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       BOLD SPLIT archetype
+       50/50 color split on cover. Large display type (48px+).
+       Vibrant accent overlays. High-energy marketing feel.
+    ---------------------------------------------------------------- */
+
+    /* --- COVER --- */
+    #cover {
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    #cover .split-left {
+      position: absolute;
+      top: 0; left: 0;
+      width: 50%; height: 100%;
+      background: var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    #cover .split-left .year-tag {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+
+    #cover .split-left h1 {
+      font-size: 40px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    #cover .split-left .accent-line {
+      width: 60px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 3px;
+      margin-bottom: 20px;
+    }
+
+    #cover .split-left .subtitle {
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    #cover .split-right {
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: var(--secondary);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 40px;
+    }
+
+    #cover .split-right .big-number {
+      font-size: 100px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      letter-spacing: -4px;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+    }
+
+    #cover .split-right .meta-block {
+      position: relative;
+      z-index: 2;
+    }
+
+    #cover .split-right .meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+    }
+
+    #cover .split-right .meta-author {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    #cover .split-right .meta-date {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--heading);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 4px;
+    }
+
+    #cover .divider-triangle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-top: 270px solid var(--primary);
+      border-right: 48px solid transparent;
+      border-bottom: 270px solid var(--secondary);
+      border-left: 0 solid transparent;
+      z-index: 3;
+    }
+
+    /* --- CONTENT --- */
+    #content {
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    #content .content-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+    }
+
+    #content .content-inner {
+      position: absolute;
+      top: 10px; left: 0; right: 0; bottom: 0;
+      display: flex;
+    }
+
+    #content .content-left {
+      width: 320px;
+      background: var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 40px;
+      flex-shrink: 0;
+    }
+
+    #content .content-left .section-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+
+    #content .content-left h2 {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    #content .content-left .accent-dot-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 24px;
+    }
+
+    #content .content-left .accent-dot-row span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    #content .content-left .accent-dot-row span:first-child {
+      background: var(--accent);
+    }
+
+    #content .content-right {
+      flex: 1;
+      padding: 36px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .bold-bullet {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-left: 4px solid var(--border);
+    }
+
+    .bold-bullet:nth-child(1) { border-left-color: var(--primary); }
+    .bold-bullet:nth-child(2) { border-left-color: var(--secondary); }
+    .bold-bullet:nth-child(3) { border-left-color: var(--accent); }
+    .bold-bullet:nth-child(4) { border-left-color: var(--primary); }
+
+    .bold-bullet .bullet-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--primary);
+      width: 32px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .bold-bullet:nth-child(2) .bullet-num { color: var(--secondary); }
+    .bold-bullet:nth-child(3) .bullet-num { color: var(--accent); filter: brightness(0.8); }
+
+    .bold-bullet .bullet-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* --- DATA --- */
+    #data {
+      background: var(--heading);
+      overflow: hidden;
+    }
+
+    #data .data-title-block {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      padding: 0 56px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+
+    #data .data-title-block h2 {
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    #data .data-title-block .title-badge {
+      margin-left: 16px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    #data .data-body {
+      position: absolute;
+      top: 90px; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .quarter-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 0 28px 0;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+    }
+
+    .quarter-block:last-child {
+      border-right: none;
+    }
+
+    .quarter-block .q-bar-wrap {
+      width: 64px;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .quarter-block .q-bar {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .quarter-block.q1 .q-bar { height: 40%; background: rgba(255,0,110,0.5); }
+    .quarter-block.q2 .q-bar { height: 52%; background: rgba(251,86,7,0.6); }
+    .quarter-block.q3 .q-bar { height: 63%; background: rgba(251,86,7,0.8); }
+    .quarter-block.q4 .q-bar { height: 75%; background: var(--accent); }
+
+    .quarter-block .q-value {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .quarter-block.q4 .q-value {
+      color: var(--accent);
+    }
+
+    .quarter-block .q-pct {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+
+    .quarter-block .q-label {
+      font-size: 14px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .quarter-block.q4 .q-label {
+      color: rgba(255,190,11,0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- SECTION 1: COVER -->
+    <section class="slide-section" id="cover">
+      <div class="split-left">
+        <p class="year-tag">Annual Report 2026</p>
+        <h1>2026 연간<br>사업 보고서</h1>
+        <div class="accent-line"></div>
+        <p class="subtitle">성장과 혁신의 여정</p>
+      </div>
+
+      <div class="divider-triangle"></div>
+
+      <div class="split-right">
+        <div class="big-number">26</div>
+        <div class="meta-block">
+          <div class="meta-label">Presented by</div>
+          <div class="meta-author">홍길동 / 전략기획팀</div>
+          <div class="meta-date">2026년 3월</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="content-top-bar"></div>
+      <div class="content-inner">
+        <div class="content-left">
+          <div class="section-label">Key Results</div>
+          <h2>핵심<br>성과<br>요약</h2>
+          <div class="accent-dot-row">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="content-right">
+          <div class="bold-bullet">
+            <div class="bullet-num">01</div>
+            <div class="bullet-text">매출 전년 대비 32% 성장 달성</div>
+          </div>
+          <div class="bold-bullet">
+            <div class="bullet-num">02</div>
+            <div class="bullet-text">신규 고객 1,200개사 확보</div>
+          </div>
+          <div class="bold-bullet">
+            <div class="bullet-num">03</div>
+            <div class="bullet-text">직원 만족도 4.5/5.0 기록</div>
+          </div>
+          <div class="bold-bullet">
+            <div class="bullet-num">04</div>
+            <div class="bullet-text">해외 시장 3개국 진출 완료</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA -->
+    <section class="slide-section" id="data">
+      <div class="data-title-block">
+        <h2>분기별 실적 추이</h2>
+        <span class="title-badge">FY 2026</span>
+      </div>
+      <div class="data-body">
+        <div class="quarter-block q1">
+          <div class="q-bar-wrap"><div class="q-bar"></div></div>
+          <div class="q-value">2.4억</div>
+          <div class="q-pct">40%</div>
+          <div class="q-label">Q1</div>
+        </div>
+        <div class="quarter-block q2">
+          <div class="q-bar-wrap"><div class="q-bar"></div></div>
+          <div class="q-value">3.1억</div>
+          <div class="q-pct">52%</div>
+          <div class="q-label">Q2</div>
+        </div>
+        <div class="quarter-block q3">
+          <div class="q-bar-wrap"><div class="q-bar"></div></div>
+          <div class="q-value">3.8억</div>
+          <div class="q-pct">63%</div>
+          <div class="q-label">Q3</div>
+        </div>
+        <div class="quarter-block q4">
+          <div class="q-bar-wrap"><div class="q-bar"></div></div>
+          <div class="q-value">4.5억</div>
+          <div class="q-pct">75%</div>
+          <div class="q-label">Q4</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

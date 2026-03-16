@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>정부 공공기관 / Gov Accessible - Preview</title>
+  <link rel="stylesheet" href="../assets/preview.css">
+
+  <style>
+    :root {
+      --primary:    #1B3A4B;
+      --secondary:  #455A64;
+      --accent:     #0288D1;
+      --bg:         #FAFAFA;
+      --surface:    #F0F0F0;
+      --text:       #1A1A1A;
+      --text-light: #555555;
+      --heading:    #0D1B24;
+      --border:     #C0C0C0;
+    }
+  </style>
+
+  <!-- Gov-Accessible: High Contrast archetype -->
+  <style>
+    /* ----------------------------------------------------------------
+       HIGH CONTRAST archetype
+       Large text, clear hierarchy, ample spacing.
+       WCAG-focused, no decorative clutter.
+    ---------------------------------------------------------------- */
+
+    /* --- COVER --- */
+    #cover {
+      background: var(--primary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    #cover .gov-cover-top {
+      background: var(--primary);
+      padding: 44px 64px 28px;
+      border-bottom: 5px solid var(--accent);
+    }
+
+    #cover .gov-cover-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: var(--accent);
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    #cover .gov-cover-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    #cover .gov-cover-subtitle {
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+    }
+
+    #cover .gov-cover-bottom {
+      background: var(--surface);
+      flex: 1;
+      padding: 28px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 3px solid var(--border);
+    }
+
+    #cover .gov-meta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    #cover .gov-meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    #cover .gov-meta-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    #cover .gov-divider {
+      width: 2px;
+      height: 60px;
+      background: var(--border);
+    }
+
+    /* --- CONTENT --- */
+    #content {
+      background: var(--bg);
+    }
+
+    #content .gov-header-bar {
+      background: var(--primary);
+      padding: 18px 64px;
+      border-bottom: 4px solid var(--accent);
+      display: flex;
+      align-items: center;
+    }
+
+    #content .gov-header-bar h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.2px;
+    }
+
+    #content .gov-content-body {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 32px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    #content .gov-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 16px 20px;
+      background: var(--surface);
+      border-left: 6px solid var(--accent);
+      border-radius: 2px;
+    }
+
+    #content .gov-bullet-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      min-width: 32px;
+    }
+
+    #content .gov-bullet-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* --- DATA --- */
+    #data {
+      background: var(--bg);
+    }
+
+    #data .gov-header-bar {
+      background: var(--primary);
+      padding: 18px 64px;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    #data .gov-header-bar h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    #data .gov-data-body {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 8px;
+    }
+
+    #data .gov-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    #data .gov-bar-label {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--heading);
+      width: 44px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    #data .gov-bar-track {
+      flex: 1;
+      height: 44px;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    #data .gov-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 16px;
+    }
+
+    #data .gov-bar-fill.highlight {
+      background: var(--accent);
+    }
+
+    #data .gov-bar-fill span {
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    #data .gov-bar-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      width: 70px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="preview-nav">
+    <a href="#cover">표지 Cover</a>
+    <a href="#content">내용 Content</a>
+    <a href="#data">데이터 Data</a>
+  </nav>
+
+  <div class="slide-wrapper">
+
+    <!-- SECTION 1: COVER -->
+    <section class="slide-section" id="cover">
+      <div class="gov-cover-top">
+        <span class="gov-cover-badge">Annual Report 2026</span>
+        <h1 class="gov-cover-title">2026 연간 사업 보고서</h1>
+        <p class="gov-cover-subtitle">성장과 혁신의 여정</p>
+      </div>
+      <div class="gov-cover-bottom">
+        <div class="gov-meta-block">
+          <span class="gov-meta-label">보고자</span>
+          <span class="gov-meta-value">홍길동 / 전략기획팀</span>
+        </div>
+        <div class="gov-divider"></div>
+        <div class="gov-meta-block">
+          <span class="gov-meta-label">보고일</span>
+          <span class="gov-meta-value">2026년 3월</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTENT -->
+    <section class="slide-section" id="content">
+      <div class="gov-header-bar">
+        <h2>핵심 성과 요약</h2>
+      </div>
+      <div class="gov-content-body">
+        <div class="gov-bullet">
+          <span class="gov-bullet-num">01</span>
+          <span class="gov-bullet-text">매출 전년 대비 32% 성장 달성</span>
+        </div>
+        <div class="gov-bullet">
+          <span class="gov-bullet-num">02</span>
+          <span class="gov-bullet-text">신규 고객 1,200개사 확보</span>
+        </div>
+        <div class="gov-bullet">
+          <span class="gov-bullet-num">03</span>
+          <span class="gov-bullet-text">직원 만족도 4.5/5.0 기록</span>
+        </div>
+        <div class="gov-bullet">
+          <span class="gov-bullet-num">04</span>
+          <span class="gov-bullet-text">해외 시장 3개국 진출 완료</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA -->
+    <section class="slide-section" id="data">
+      <div class="gov-header-bar">
+        <h2>분기별 실적 추이</h2>
+      </div>
+      <div class="gov-data-body">
+        <div class="gov-bar-row">
+          <div class="gov-bar-label">Q1</div>
+          <div class="gov-bar-track">
+            <div class="gov-bar-fill" style="width:40%"><span>2.4억</span></div>
+          </div>
+          <div class="gov-bar-value">40%</div>
+        </div>
+        <div class="gov-bar-row">
+          <div class="gov-bar-label">Q2</div>
+          <div class="gov-bar-track">
+            <div class="gov-bar-fill" style="width:52%"><span>3.1억</span></div>
+          </div>
+          <div class="gov-bar-value">52%</div>
+        </div>
+        <div class="gov-bar-row">
+          <div class="gov-bar-label">Q3</div>
+          <div class="gov-bar-track">
+            <div class="gov-bar-fill" style="width:63%"><span>3.8억</span></div>
+          </div>
+          <div class="gov-bar-value">63%</div>
+        </div>
+        <div class="gov-bar-row">
+          <div class="gov-bar-label">Q4</div>
+          <div class="gov-bar-track">
+            <div class="gov-bar-fill highlight" style="width:75%"><span>4.5억</span></div>
+          </div>
+          <div class="gov-bar-value">75%</div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.slide-wrapper -->
+
+</body>
+</html>
