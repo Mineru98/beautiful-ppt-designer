@@ -44,7 +44,8 @@ NotebookLM 스킬을 통해 원본 문서의 핵심 내용을 추출합니다.
 ```bash
 brew install typst          # macOS
 pip install python-pptx     # PPT 변환
-npm install -g notebooklm-cli  # 콘텐츠 분석 (선택)
+uv tool install notebooklm-mcp-cli  # 콘텐츠 분석 (선택, pip install notebooklm-mcp-cli 도 가능)
+nlm login                   # Google 계정 인증
 ```
 
 ## 사용법
