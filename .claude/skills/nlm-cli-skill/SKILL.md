@@ -28,6 +28,11 @@ nlm --version           # Check installed version
 8. **Check aliases before creating**: Run `nlm alias list` before creating a new alias to avoid conflicts with existing names.
 9. **DO NOT launch REPL**: Never use `nlm chat start` - it opens an interactive REPL that AI tools cannot control. Use `nlm notebook query` for one-shot Q&A instead.
 10. **Choose output format wisely**: Default output (no flags) is compact and token-efficient—use it for status checks. Use `--quiet` to capture IDs for piping. Only use `--json` when you need to parse specific fields programmatically.
+11. **한국어 출력 우선**: 콘텐츠 생성 시 항상 한국어로 결과가 나오도록 설정한다.
+    - `--language ko` 플래그가 있는 명령어는 반드시 `--language ko`를 추가한다 (report, audio 등).
+    - `--prompt` 옵션이 있는 명령어 (report `--format "Create Your Own"`, chat configure `--goal custom` 등)는 프롬프트 끝에 **"반드시 한국어로 작성해줘."**를 추가한다.
+    - `nlm notebook query`로 질문할 때는 한국어로 질문한다.
+    - `--focus` 옵션 (audio 등)도 한국어로 작성한다.
 
 ## Workflow Decision Tree
 

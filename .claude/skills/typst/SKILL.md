@@ -68,48 +68,52 @@ If the user provides a PDF or document as source material:
 
 4. **Follow-up queries** to fill gaps in understanding before proceeding to slide creation.
 
-### Phase 2: User Configuration (AskUserQuestion)
-
-Use the `AskUserQuestion` tool to gather user preferences BEFORE creating slides.
+### Phase 2: User Configuration
 
 **Question 1: Page Count**
-```
-Ask the user how many slides they want:
+Use `AskUserQuestion` to ask the user how many slides they want:
 - "10 슬라이드 (간결한 요약)" - Concise summary
 - "15 슬라이드 (표준 발표)" - Standard presentation
 - "20 슬라이드 (상세 발표)" - Detailed presentation
 - Other (custom number input)
+
+**Question 2: Design Style Selection (25 styles)**
+
+**Option A: Visual Preview (Recommended)**
+Start the preview server and open the browser for visual style comparison:
+
+```bash
+# Start preview server (background)
+python .claude/skills/typst/preview/server.py &
+
+# Open browser (macOS)
+if [[ "$OSTYPE" == "darwin"* ]]; then open http://localhost:8432;
+elif command -v xdg-open &>/dev/null; then xdg-open http://localhost:8432;
+else echo "Please open http://localhost:8432 in your browser"; fi
 ```
 
-**Question 2: Design Style Selection**
-Read the design vocabulary from `assets/design-vocabulary.json` and present styles to the user.
-Each option should show:
-- Style name (Korean + English)
-- Brief mood description
-- The style's visual characteristics
+Tell the user: "브라우저에서 디자인 스타일을 탐색해주세요. 갤러리에서 카드를 클릭하면 상세 프리뷰를, Compare 탭에서 2개 스타일을 나란히 비교할 수 있습니다. 마음에 드는 스타일을 알려주세요."
 
-Present as selectable options with previews showing the color palette:
-```
-Available styles:
-1. 미니멀 클린 / Minimal Clean - "Calm professionalism"
-2. 코퍼레이트 모던 / Corporate Modern - "Balanced and authoritative"
-3. 그라디언트 플로우 / Gradient Flow - "Energetic and contemporary"
-4. 다크 엘레건트 / Dark Elegant - "Sophisticated and premium"
-5. 네이처 오가닉 / Nature Organic - "Warm and approachable"
-6. 테크 네온 / Tech Neon - "Futuristic and innovative"
-7. 파스텔 소프트 / Pastel Soft - "Friendly and inviting"
-8. 볼드 지오메트릭 / Bold Geometric - "Striking and memorable"
-9. 클래식 아카데믹 / Classic Academic - "Authoritative and timeless"
-10. 스칸디나비안 휘게 / Scandinavian Hygge - "Comfortable and refined"
+Wait for the user to name their chosen style, then confirm with AskUserQuestion. After selection:
+```bash
+# Stop server
+kill $(cat /tmp/beautiful-ppt-preview.pid) 2>/dev/null
 ```
 
-Since AskUserQuestion supports max 4 options per question, group them into 2-3 category questions:
-- Question: "어떤 분위기의 디자인을 원하시나요?" with categories like:
-  - "전문적/비즈니스 (미니멀, 코퍼레이트, 클래식)"
-  - "모던/트렌디 (그라디언트, 다크, 테크)"
-  - "따뜻한/친근한 (네이처, 파스텔, 스칸디나비안)"
-  - "강렬한/임팩트 (볼드 지오메트릭)"
-- Then follow up with specific style within the chosen category
+**Option B: Text-based Fallback**
+If the preview server is unavailable or user prefers text selection, use AskUserQuestion with category grouping:
+
+Available 25 styles by category:
+- **비즈니스 / Business**: 미니멀 클린, 코퍼레이트 모던, 파이낸스 트러스트, 컨설팅 스트래터지
+- **모던 / Modern**: 그라디언트 플로우, 다크 엘레건트, 볼드 지오메트릭, 브랜드 스토리텔링
+- **테크 / Tech**: 테크 네온, SaaS 프로덕트, AI 퓨처리스틱
+- **교육 / Education**: 에듀 클래스룸, 에듀 리서치, 클래식 아카데믹
+- **의료 / Healthcare**: 메디컬 클리니컬, 파마 바이오텍
+- **공공 / Public**: 거버먼트 액세서블, NGO 임팩트
+- **크리에이티브 / Creative**: 크리에이티브 포트폴리오, 스타트업 피치, 마케팅 캠페인
+- **라이프스타일 / Lifestyle**: 네이처 오가닉, 파스텔 소프트, 스칸디나비안 휘게, 리테일 라이프스타일
+
+Use 2-step AskUserQuestion: first select category, then select style within category.
 
 ### Phase 3: Typst Slide Generation
 
@@ -214,10 +218,16 @@ After all 3 verification iterations pass:
 
 ## Asset Files
 
-- `assets/design-vocabulary.json` — 10 design styles with descriptions and mood
-- `assets/color-themes.json` — Color palettes for each design style
+- `assets/design-vocabulary.json` — 25 design styles with descriptions and mood (v2.0.0)
+- `assets/color-themes.json` — Color palettes for each design style (v2.0.0)
 - `references/slide-templates.md` — Typst template functions for various slide types
 - `scripts/export-ppt.py` — PNG-to-PPTX conversion script
+- `preview/` — HTML preview system for visual style comparison
+  - `index.html` — Gallery page with domain filters (25 styles)
+  - `compare.html` — Side-by-side style comparison view
+  - `server.py` — Local development server (port 8432)
+  - `styles/*.html` — Individual style preview pages (25 files)
+  - `assets/preview.css` — Shared stylesheet for preview pages
 
 ## Typst Syntax Quick Reference
 
