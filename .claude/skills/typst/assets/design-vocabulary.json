@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "styles": [
     {
       "id": "minimal-clean",
@@ -70,6 +70,111 @@
       "description": "Warm oat, birch, and flax tones create a cozy envelope that feels like a well-lit cabin in winter. Minimalist layouts keep things uncluttered while natural wood-grain textures and soft hand-drawn accents add tactile warmth. The result is comfortable, refined, and deeply human.",
       "keywords": ["hygge", "nordic", "warm", "cozy", "minimal", "natural", "wood"],
       "mood": "Comfortable and refined"
+    },
+    {
+      "id": "medical-clinical",
+      "name": "메디컬 클리니컬 / Medical Clinical",
+      "description": "Pristine white cards float on a cool ice-blue background, evoking clinical sterility and trustworthiness. Clean grid layouts with rounded-corner data boxes and subtle icon placeholders convey medical precision. The palette centers on calming blues and teals that reassure patients and professionals alike.",
+      "keywords": ["healthcare", "clinical", "clean", "trust", "blue", "medical", "precision"],
+      "mood": "Clean trust"
+    },
+    {
+      "id": "pharma-biotech",
+      "name": "파마 바이오텍 / Pharma Biotech",
+      "description": "Deep forest greens and crisp whites create a laboratory-grade aesthetic that speaks to scientific rigor. Structured data rows and molecular-style dot decorations reinforce the biotech narrative. A green header stripe anchors each slide with institutional authority.",
+      "keywords": ["pharma", "biotech", "science", "green", "laboratory", "molecular", "research"],
+      "mood": "Scientific precision"
+    },
+    {
+      "id": "edu-classroom",
+      "name": "에듀 클래스룸 / Edu Classroom",
+      "description": "Bright, energetic orange and warm yellow tones spark curiosity and engagement. Bold header sections with numbered list cards make complex topics approachable for younger audiences. Fun accent shapes and generous spacing keep attention focused without overwhelming.",
+      "keywords": ["education", "classroom", "bright", "engaging", "orange", "learning", "accessible"],
+      "mood": "Energetic learning"
+    },
+    {
+      "id": "edu-research",
+      "name": "에듀 리서치 / Edu Research",
+      "description": "Scholarly navy blues and soft sky accents create an atmosphere of intellectual depth. A left sidebar for section labels paired with a main content area mirrors academic paper layouts. Footnote-style bottom bars and structured typography honor research conventions.",
+      "keywords": ["research", "university", "academic", "navy", "scholarly", "structured", "depth"],
+      "mood": "Scholarly depth"
+    },
+    {
+      "id": "startup-pitch",
+      "name": "스타트업 피치 / Startup Pitch",
+      "description": "Electric purple and hot pink collide with cyan accents to create slides that demand attention in any pitch room. Full-bleed accent blocks, oversized metric numbers, and diagonal slash dividers project confidence and disruption. Every slide is designed to make investors lean forward.",
+      "keywords": ["startup", "pitch", "bold", "purple", "disruptive", "metrics", "investor"],
+      "mood": "Bold disruption"
+    },
+    {
+      "id": "saas-product",
+      "name": "SaaS 프로덕트 / SaaS Product",
+      "description": "Deep indigo foundations support clean card-based layouts that mirror dashboard interfaces. Subtle shadows and metric boxes with icon placeholders communicate technical sophistication without complexity. The palette balances authority with the approachability that B2B buyers expect.",
+      "keywords": ["saas", "product", "dashboard", "indigo", "cards", "metrics", "B2B"],
+      "mood": "Techy clarity"
+    },
+    {
+      "id": "marketing-campaign",
+      "name": "마케팅 캠페인 / Marketing Campaign",
+      "description": "Vivid magenta, fiery orange, and golden yellow create an attention-grabbing trifecta that pops off every slide. Bold 50/50 color splits and large display typography deliver messages with unmissable impact. Vibrant accent overlays ensure no point goes unnoticed.",
+      "keywords": ["marketing", "campaign", "vibrant", "magenta", "bold", "attention", "impact"],
+      "mood": "Vibrant energy"
+    },
+    {
+      "id": "brand-storytelling",
+      "name": "브랜드 스토리텔링 / Brand Storytelling",
+      "description": "Dark navy foundations with cool gray tones and a single red accent create editorial magazine-quality slides. Asymmetric layouts, pull-quote styling, and dramatic whitespace give every message room to resonate. Serif headings add gravitas to the narrative arc.",
+      "keywords": ["brand", "storytelling", "editorial", "magazine", "navy", "asymmetric", "narrative"],
+      "mood": "Editorial elegance"
+    },
+    {
+      "id": "finance-trust",
+      "name": "파이낸스 트러스트 / Finance Trust",
+      "description": "Institutional navy and deep blue tones project the stability and reliability that financial audiences demand. Strict grid alignment, conservative spacing, and muted borders create slides that feel as solid as a balance sheet. Every element whispers credibility.",
+      "keywords": ["finance", "banking", "trust", "navy", "institutional", "conservative", "stable"],
+      "mood": "Institutional trust"
+    },
+    {
+      "id": "consulting-strategy",
+      "name": "컨설팅 스트래터지 / Consulting Strategy",
+      "description": "Crisp white backgrounds with thin black borders and bold golden-yellow accents channel the clarity of top-tier consulting decks. Structured hierarchy, clean data presentation, and deliberate negative space let strategic insights speak for themselves.",
+      "keywords": ["consulting", "strategy", "clean", "yellow", "hierarchy", "McKinsey", "clarity"],
+      "mood": "Strategic clarity"
+    },
+    {
+      "id": "gov-accessible",
+      "name": "거버먼트 액세서블 / Gov Accessible",
+      "description": "High-contrast navy and white with strong blue accents prioritize readability above all else. Large text sizes, generous spacing, and clear visual hierarchy ensure accessibility compliance. Every design choice serves the goal of universal comprehension.",
+      "keywords": ["government", "accessible", "WCAG", "high-contrast", "readable", "public", "inclusive"],
+      "mood": "WCAG-compliant clarity"
+    },
+    {
+      "id": "ngo-impact",
+      "name": "NGO 임팩트 / NGO Impact",
+      "description": "Earthy olive greens and warm amber tones convey genuine commitment to positive change. Storytelling layouts with hand-drawn-style underlines and warm header bands invite emotional connection. The palette feels grounded, honest, and deeply human.",
+      "keywords": ["nonprofit", "impact", "earth", "warm", "storytelling", "community", "honest"],
+      "mood": "Earnest warmth"
+    },
+    {
+      "id": "creative-portfolio",
+      "name": "크리에이티브 포트폴리오 / Creative Portfolio",
+      "description": "Stark black and white foundations provide the canvas for bold red and gold accent explosions. Asymmetric overlapping elements and thick borders create an avant-garde gallery feel. Every slide is a statement piece that showcases creative confidence.",
+      "keywords": ["creative", "portfolio", "avant-garde", "black", "bold", "gallery", "artistic"],
+      "mood": "Avant-garde edge"
+    },
+    {
+      "id": "retail-lifestyle",
+      "name": "리테일 라이프스타일 / Retail Lifestyle",
+      "description": "Warm terracotta, sandy beige, and sage green create a lifestyle magazine aesthetic that feels aspirational yet approachable. Soft pastel cards with rounded elements and lifestyle imagery placeholders tell a visual story of curated living.",
+      "keywords": ["retail", "lifestyle", "warm", "magazine", "pastel", "curated", "aspirational"],
+      "mood": "Lifestyle warmth"
+    },
+    {
+      "id": "ai-futuristic",
+      "name": "AI 퓨처리스틱 / AI Futuristic",
+      "description": "Deep cosmic navy backgrounds dotted with neural-network-style connecting nodes create a sense of infinite digital intelligence. Purple and mint accent glows float above the void like data constellations. Floating card elements and subtle particle effects evoke the frontier of artificial intelligence.",
+      "keywords": ["AI", "futuristic", "neural", "cosmic", "purple", "mint", "intelligence", "space"],
+      "mood": "Cosmic intelligence"
     }
   ]
 }
